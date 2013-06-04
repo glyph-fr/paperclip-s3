@@ -5,14 +5,14 @@ require 'paperclip-s3/railtie'
 
 module Paperclip
   module S3
-    
+
     # Use Paperclip::S3::Glue to keep the original gem style
     module Glue
       def self.included base
         base.extend ClassMethods
       end
     end
-        
+
     module ClassMethods
       # Extends the paperclips has_attached_file method
       # It will use S3 Storage. The credentials will be read from the environment
@@ -26,6 +26,10 @@ module Paperclip
                                         :access_key_id => ENV['S3_KEY'],
                                         :secret_access_key => ENV['S3_SECRET']
                                     }
+
+        options[:s3_host_alias] ||= ENV["S3_BUCKET"]
+        options[:url] ||= ":s3_alias_url"
+
         super(name, options)
       end
     end
