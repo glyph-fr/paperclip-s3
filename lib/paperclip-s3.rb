@@ -26,6 +26,10 @@ module Paperclip
                                         :access_key_id => ENV['S3_KEY'],
                                         :secret_access_key => ENV['S3_SECRET']
                                     }
+
+        options[:s3_host_alias] ||= ENV["S3_BUCKET"]
+        options[:url] ||= ":s3_alias_url"
+
         super(name, options)
       end
     end
