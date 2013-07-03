@@ -28,6 +28,12 @@ If you are using *https* as the S3 Protocol, you can also specify it as a Heroku
   heroku config:add S3_PROTOCOL=https
 </pre>
 
+Also, if your bucket is in another region than the default "US Standard", you must specify the region with the subdomain used by AWS to reach your region, using the command above.
+
+<pre>
+  heroku config:add S3_REGION=s3-eu-west-1
+</pre>
+
 <b>Notice that the S3 protocol will default to http</b>
 
 You can optionally specify which environments will use S3 with the S3_ENVIRONMENTS variable (using a comma-separated list).

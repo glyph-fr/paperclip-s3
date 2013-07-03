@@ -26,6 +26,12 @@ module Paperclip
                                         :access_key_id => ENV['S3_KEY'],
                                         :secret_access_key => ENV['S3_SECRET']
                                     }
+        # Allow creating S3_REGION env var to configure the target domain s3
+        #
+        if (region = ENV["S3_REGION"])
+          options[:s3_credentials][:host_name] ||= "#{ region }.amazonaws.com"
+        end
+
         super(name, options)
       end
     end
