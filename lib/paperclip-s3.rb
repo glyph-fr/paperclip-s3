@@ -29,7 +29,7 @@ module Paperclip
         # Allow creating S3_REGION env var to configure the target domain s3
         #
         if (region = ENV["S3_REGION"])
-          options[:s3_credentials][:host_name] ||= "#{ region }.amazonaws.com"
+          options[:s3_host_name] ||= "#{ region }.amazonaws.com"
         end
 
         super(name, options)
