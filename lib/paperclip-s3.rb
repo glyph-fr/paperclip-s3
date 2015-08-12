@@ -19,7 +19,6 @@ module Paperclip
       def has_attached_file(name, options = {})
         s3_protocol = !!ENV["S3_PROTOCOL"] ? ENV["S3_PROTOCOL"] : "http"
         options[:storage] = :s3
-        options[:path]    ||= "/:class/:attachment/:id_partition/:style/:filename"
         options[:bucket]  ||= ENV["S3_BUCKET"]
         options[:s3_protocol] ||= s3_protocol
         options[:s3_credentials] ||= {
